@@ -1,10 +1,13 @@
 ---
 name: Add Feature
-about: Add features that need to be revisited
+about: 'Add features or functionality '
 title: ''
 labels: ''
 assignees: ChadAleGD
 
 ---
 
-**Files Affected and Features Needed:**
+**Files Affected:**
+
+
+**Features Needed:**

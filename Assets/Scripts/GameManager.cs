@@ -17,11 +17,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    [SerializeField] private List<RoundData> _roundsData = new();
-    private static int _roundIndex = 0;
-
-
-    private WaitForSeconds _roundStartBuffer = new(1.5f);
 
 
 
@@ -29,36 +24,11 @@ public class GameManager : MonoBehaviour
 
 
 
-    private void Start() => StartRound();
 
-
-    private void OnEnable()
+    //TODO: Change this later to be ran through states
+    private void Start()
     {
-        EventBus.Subscribe(EventType.OnExitShop, StartRound);
+        EventBus.Publish(EventType.OnRoundStart);
     }
-
-    private void OnDisable()
-    {
-        EventBus.Unsubscribe(EventType.OnExitShop, StartRound);
-    }
-
-
-
-    //------------------------------------------------------------------------------------------------//
-
-
-
-    public void StartRound() => StartCoroutine(BufferStart());
-
-
-    private IEnumerator BufferStart()
-    {
-        yield return _roundStartBuffer;
-        EventBus.Publish(EventType.OnRoundStart, _roundsData[_roundIndex]);
-        _roundIndex++;
-    }
-
-
-
 
 }

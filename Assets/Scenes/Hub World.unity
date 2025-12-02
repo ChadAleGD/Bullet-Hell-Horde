@@ -18116,7 +18116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ef5803a50a7a94b86b97def6ef0592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::EnemyManager
-  _enemyFactory: {fileID: 0}
+  _roundsData:
+  - EnemyType: {fileID: 11400000, guid: e6190da83953d014d9efa814792c5354, type: 2}
+    EnemyMaxActiveAmount: 3
+    EnemyTotalAmount: 6
+    MaxSpawnBurstAmount: 1
+  _waveSpawnBuffer: 1.5
   _enemyPrefab: {fileID: 8031283185854294856, guid: 3034e42d262fee345b3377e59889741d, type: 3}
   _spawnPositions:
   - {fileID: 884877183}
@@ -18128,8 +18133,7 @@ MonoBehaviour:
   - {fileID: 809702235}
   - {fileID: 1140500522}
   - {fileID: 1797786477}
-  enemySO: {fileID: 11400000, guid: e6190da83953d014d9efa814792c5354, type: 2}
-  player: {fileID: 2106005877}
+  _enemyFactory: {fileID: 1088877239}
 --- !u!4 &557383792
 Transform:
   m_ObjectHideFlags: 0
@@ -18258,31 +18262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e949d991ac58e469c9235547e1e249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::GameManager
-  _roundsData:
-  - TotalEnemies: 10
-    ActiveEnemyMax: 3
-    MaxEnemyBurst: 1
-  - TotalEnemies: 15
-    ActiveEnemyMax: 3
-    MaxEnemyBurst: 2
-  - TotalEnemies: 22
-    ActiveEnemyMax: 5
-    MaxEnemyBurst: 3
-  - TotalEnemies: 30
-    ActiveEnemyMax: 5
-    MaxEnemyBurst: 4
-  - TotalEnemies: 40
-    ActiveEnemyMax: 6
-    MaxEnemyBurst: 5
-  - TotalEnemies: 50
-    ActiveEnemyMax: 10
-    MaxEnemyBurst: 10
-  - TotalEnemies: 100
-    ActiveEnemyMax: 15
-    MaxEnemyBurst: 5
-  - TotalEnemies: 100
-    ActiveEnemyMax: 15
-    MaxEnemyBurst: 5
 --- !u!4 &761849988
 Transform:
   m_ObjectHideFlags: 0
@@ -19547,6 +19526,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1088877238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088877240}
+  - component: {fileID: 1088877239}
+  m_Layer: 0
+  m_Name: Enemy Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1088877239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088877238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ce11cd09784794887070aff7704a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::EnemyFactory
+  _enemyBasePrefab: {fileID: 8031283185854294856, guid: 3034e42d262fee345b3377e59889741d, type: 3}
+  _playerTransform: {fileID: 2106005877}
+--- !u!4 &1088877240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088877238}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1103927519
 GameObject:
   m_ObjectHideFlags: 0
@@ -28037,3 +28062,4 @@ SceneRoots:
   - {fileID: 943816440}
   - {fileID: 557383792}
   - {fileID: 1774277657}
+  - {fileID: 1088877240}

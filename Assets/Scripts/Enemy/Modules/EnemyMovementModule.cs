@@ -59,11 +59,3 @@ public class EnemyMovementModule : MonoBehaviour, IEnemyModule
     }
 
 }
-
-
-
-
-public interface IEnemyModule
-{
-    public IEnemyModule Initialize(EnemySO enemyData);
-}

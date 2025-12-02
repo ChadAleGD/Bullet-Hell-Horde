@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class ChaseBehavior : MonoBehaviour, IEnemyBehavior, IDamageable
 {
-
-
     private Enemy _host;
 
 

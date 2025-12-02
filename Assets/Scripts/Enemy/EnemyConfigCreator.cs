@@ -54,7 +54,7 @@ public class EnemyConfigCreator : MonoBehaviour
     }
 
 
-
-
+    // This MonoBehaviour has no purpose during runtime
+    // Deleting the GameObject cleans up scene hierarchy
     private void Awake() => Destroy(gameObject);
 }

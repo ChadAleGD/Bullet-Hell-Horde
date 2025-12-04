@@ -1,16 +1,6 @@
 
 
-
-
-public interface IEnemyBehavior
+public interface IModule
 {
-    void Initialize(Enemy enemy);
-    static IEnemyBehavior AttachDefaultBehavior(Enemy host) => host.gameObject.AddComponent<ChaseBehavior>();
-}
-
-
-
-public interface IEnemyModule
-{
-    public IEnemyModule Initialize(EnemySO enemyData);
+    public void Initialize(Blackboard blackboard);
 }

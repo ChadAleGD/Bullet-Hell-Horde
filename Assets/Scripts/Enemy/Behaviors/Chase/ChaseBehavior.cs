@@ -4,16 +4,17 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(BoxCollider2D))]
-public class ChaseBehavior : MonoBehaviour, IEnemyBehavior, IDamageable
+public class ChaseBehavior : MonoBehaviour, IModule
+//IDamageable
 {
-    private Enemy _host;
 
+    private Blackboard _blackboard;
+    private BlackboardKey _isAliveKey;
+    //private BlackboardKey
 
     private BoxCollider2D _boxCollider;
 
     // Required modules for chase, without them theres no functionality 
-    private EnemyMovementModule _movementModule;
-    private EnemyAnimationModule _enemyAnimationModule;
 
 
 
@@ -23,25 +24,37 @@ public class ChaseBehavior : MonoBehaviour, IEnemyBehavior, IDamageable
 
 
 
-    public void Initialize(Enemy enemy)
+    public void Initialize(Blackboard blackboard)
     {
-        _host = enemy;
+        _blackboard = blackboard;
+        _isAliveKey = _blackboard.TryGetOrAddKey("IsAlive");
 
-        _movementModule = (EnemyMovementModule)gameObject.AddComponent<EnemyMovementModule>().Initialize(_host.EnemyData);
-        _enemyAnimationModule = (EnemyAnimationModule)gameObject.AddComponent<EnemyAnimationModule>().Initialize(_host.EnemyData);
+
+        //_movementModule = gameObject.AddComponent<EnemyMovementModule>();
+        //_enemyAnimationModule = (EnemyAnimationModule)gameObject.AddComponent<EnemyAnimationModule>().Initialize(_host.EnemyData);
 
         _boxCollider = GetComponent<BoxCollider2D>();
+
+        var playerPosition = _blackboard.TryGetOrAddKey("PlayerPosition");
     }
 
 
 
 
-    private void FixedUpdate()
+    /*
+    if (!_blackboard.TryGetValue(_isAliveKey, out bool isAlive)) return;
+    if (!isAlive) return;
+
+
+    if (!_blackboard.TryGetValue(_blackboard.TryGetOrAddKey("PlayerTransform"), out Vector3 playerTransform))
     {
-        if (!_host.IsAlive) return;
-
-        _movementModule.Move(_host.PlayerTransform, _host.MoveSpeed);
+        Debug.LogError($"Black board of {gameObject.name} is trying to access PlayerTransform but no key exists!");
+        return;
     }
+
+    _blackboard.TryGetOrAddKey("Move");
+    //_movementModule.Move(_host.PlayerTransform, _host.MoveSpeed);
+
 
 
     public void TakeDamage(Damage damage) => StartCoroutine(TakeDamageRoutine(damage));
@@ -49,7 +62,8 @@ public class ChaseBehavior : MonoBehaviour, IEnemyBehavior, IDamageable
     public IEnumerator TakeDamageRoutine(Damage damage)
     {
         _enemyAnimationModule.Animate("TakingDamage", true);
-
+        yield return null;
+        /*
         _host._health--;
         yield return StartCoroutine(_movementModule.Knockback(_host.PlayerTransform, damage.PushForce));
 
@@ -69,5 +83,6 @@ public class ChaseBehavior : MonoBehaviour, IEnemyBehavior, IDamageable
         }
     }
 
+    */
 
 }

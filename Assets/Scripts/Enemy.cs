@@ -1,38 +1,26 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Enemy : MonoBehaviour
 {
 
-
-    public EnemySO EnemyData;
+    private Blackboard _blackboard = new();
+    private BlackboardKey _isAliveKey;
 
 
     private Animator _animator;
-    private BoxCollider2D _bcol;
-
-
-    public float MoveSpeed;
-
-    [SerializeField] private float _maxHealth;
-    [SerializeField] public float _health;
-    public bool IsAlive = false;
-
-
 
 
     [SerializeField] private GameObject _coinPrefab;
     [SerializeField] private Transform _coinParent;
 
 
+    private List<ModuleFactory> _moduleFactories;
 
-    public Transform PlayerTransform;
-    private EnemyBehaviorFactory _behaviorFactory;
-    private IEnemyBehavior _behavior;
 
 
 
@@ -47,30 +35,29 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _bcol = GetComponent<BoxCollider2D>();
-
-
 
         _animator = GetComponent<Animator>();
     }
 
 
 
-    public void Bootstrap(EnemySO enemyData, Transform playerTransform)
+    public void Initialize(EnemySO enemyData, Transform playerTransform)
     {
-        EnemyData = enemyData;
-        PlayerTransform = playerTransform;
-        _behaviorFactory = enemyData.BehaviorFactory;
+        // Later make some default values such as is alive, speed, health, etc.
+        // the blackboard should be able to just generate them based on passed in data
+        // the enemy shouldnt have to do this by hand, the blackboard will do the heavy lifting
+        _blackboard.ModifyValue(_blackboard.TryGetOrAddKey("EnemySO"), enemyData);
+        _blackboard.ModifyValue(_blackboard.TryGetOrAddKey("PlayerTransform"), playerTransform);
+        _isAliveKey = _blackboard.TryGetOrAddKey("IsAlive");
+        _blackboard.ModifyValue(_isAliveKey, false);
 
-        _maxHealth = enemyData.MaxHealth;
-        _health = enemyData.MaxHealth;
-        MoveSpeed = enemyData.Speed;
 
+        foreach (var moduleFactory in _moduleFactories)
+        {
+            var module = moduleFactory.AttachModule(gameObject);
+            module.Initialize(_blackboard);
+        }
 
-        if (_behaviorFactory == null) _behavior = IEnemyBehavior.AttachDefaultBehavior(this);
-        else _behavior = _behaviorFactory.AttachBehavior(this);
-
-        _behavior.Initialize(this);
 
         StartCoroutine(Spawn());
     }
@@ -80,7 +67,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         _animator.SetBool("IsAlive", true);
-        IsAlive = true;
+        _blackboard.ModifyValue(_isAliveKey, true);
     }
 
 

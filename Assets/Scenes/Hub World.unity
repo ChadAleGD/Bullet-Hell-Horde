@@ -18133,7 +18133,6 @@ MonoBehaviour:
   - {fileID: 809702235}
   - {fileID: 1140500522}
   - {fileID: 1797786477}
-  _enemyFactory: {fileID: 1088877239}
 --- !u!4 &557383792
 Transform:
   m_ObjectHideFlags: 0
@@ -18225,50 +18224,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583750526}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &761849986
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 761849988}
-  - component: {fileID: 761849987}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &761849987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761849986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e949d991ac58e469c9235547e1e249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::GameManager
---- !u!4 &761849988
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761849986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -19091,63 +19046,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941709384}
   m_CullTransparentMesh: 1
---- !u!1 &943816437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 943816440}
-  - component: {fileID: 943816439}
-  - component: {fileID: 943816438}
-  m_Layer: 0
-  m_Name: '[SERVICE LOCATOR]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &943816438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943816437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982c9aa8f8aaf7f43a0e1ab1274aabaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::SLBootstrapper
---- !u!114 &943816439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943816437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 918e4929a862d3d419ccc5ed142165b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ServiceLocator
---- !u!4 &943816440
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943816437}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &950724144
 GameObject:
   m_ObjectHideFlags: 0
@@ -26923,7 +26821,7 @@ GameObject:
   - component: {fileID: 1774277657}
   - component: {fileID: 1774277658}
   m_Layer: 0
-  m_Name: ENEMY CONFIG CREATOR
+  m_Name: ENEMY SO CREATOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26961,7 +26859,7 @@ MonoBehaviour:
   Speed: 0
   BaseDamage: 0
   AnimationController: {fileID: 0}
-  BehaviorFactory: {fileID: 0}
+  ModuleFactories: []
 --- !u!1 &1782291034
 GameObject:
   m_ObjectHideFlags: 0
@@ -28052,14 +27950,12 @@ SceneRoots:
   - {fileID: 583750528}
   - {fileID: 349219469}
   - {fileID: 448181040}
+  - {fileID: 1008809052}
   - {fileID: 2106005877}
   - {fileID: 763097810}
   - {fileID: 229859069}
-  - {fileID: 761849988}
   - {fileID: 916559642}
   - {fileID: 1327483377}
-  - {fileID: 1008809052}
-  - {fileID: 943816440}
   - {fileID: 557383792}
-  - {fileID: 1774277657}
   - {fileID: 1088877240}
+  - {fileID: 1774277657}

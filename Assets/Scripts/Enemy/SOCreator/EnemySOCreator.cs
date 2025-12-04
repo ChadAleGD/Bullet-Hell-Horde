@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
 
 
-public class EnemyConfigCreator : MonoBehaviour
+public class EnemySOCreator : MonoBehaviour
 {
     public string EnemyName;
     public float MaxHealth;
     public float Speed;
     public float BaseDamage;
     public RuntimeAnimatorController AnimationController;
-    public EnemyBehaviorFactory BehaviorFactory;
+    public List<ModuleFactory> ModuleFactories;
 
 
     // Validation method to ensure that the editor has each
@@ -42,11 +43,12 @@ public class EnemyConfigCreator : MonoBehaviour
             message = "Animation controller has not been set.";
             return false;
         }
-        if (BehaviorFactory == null)
+        if (ModuleFactories == null || ModuleFactories.Count <= 0)
         {
-            message = "Behavior has not been set.";
+            message = "Modules have not been set.";
             return false;
         }
+
 
         message = "";
         return true;

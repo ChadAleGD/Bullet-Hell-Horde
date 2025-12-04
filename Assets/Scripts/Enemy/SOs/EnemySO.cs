@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -8,8 +9,8 @@ public class EnemySO : ScriptableObject
     public float Speed;
     public float BaseDamage;
     public RuntimeAnimatorController AnimatorController;
-    public EnemyBehaviorFactory BehaviorFactory;
-
+    public List<ModuleFactory> ModuleFactories;
+    public List<IModule> Modules;
 
 
     public class Builder
@@ -19,7 +20,7 @@ public class EnemySO : ScriptableObject
         private float _baseDamage;
         private float _speed;
         private RuntimeAnimatorController _animatorController;
-        private EnemyBehaviorFactory _behaviorFactory;
+        private List<ModuleFactory> _moduleFactories;
 
 
         public Builder WithName(string name)
@@ -57,9 +58,9 @@ public class EnemySO : ScriptableObject
             return this;
         }
 
-        public Builder WithBehavior(EnemyBehaviorFactory behaviorFactory)
+        public Builder WithModules(List<ModuleFactory> behaviorFactories)
         {
-            _behaviorFactory = behaviorFactory;
+            _moduleFactories = behaviorFactories;
 
             return this;
         }
@@ -72,7 +73,7 @@ public class EnemySO : ScriptableObject
             enemy.Speed = _speed;
             enemy.BaseDamage = _baseDamage;
             enemy.AnimatorController = _animatorController;
-            enemy.BehaviorFactory = _behaviorFactory;
+            enemy.ModuleFactories = _moduleFactories;
 
             return enemy;
         }

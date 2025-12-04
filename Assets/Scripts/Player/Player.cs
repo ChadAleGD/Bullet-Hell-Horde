@@ -65,7 +65,6 @@ namespace Gameplay.Player
         [SerializeField] private CustomTrigger _interactionTrigger;
 
 
-        private ServiceLocator _serviceLocator;
 
 
         //---------------------------------------------------------------------------------------------------//

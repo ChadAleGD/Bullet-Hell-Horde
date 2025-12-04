@@ -2,10 +2,13 @@ using System.Collections;
 using UnityEngine;
 
 
-
+[DisallowMultipleComponent]
 [RequireComponent(typeof(Animator))]
-public class EnemyAnimationModule : MonoBehaviour, IEnemyModule
+public class EnemyAnimationModule : MonoBehaviour, IModule
 {
+    private Blackboard _blackboard;
+
+    private BlackboardKey _enemySOKey;
 
     private Animator _animator;
 
@@ -15,12 +18,15 @@ public class EnemyAnimationModule : MonoBehaviour, IEnemyModule
 
 
 
-    public IEnemyModule Initialize(EnemySO enemyData)
+    public void Initialize(Blackboard blackboard)
     {
         _animator = GetComponent<Animator>();
-        _animator.runtimeAnimatorController = enemyData.AnimatorController;
 
-        return this;
+        _blackboard = blackboard;
+        _enemySOKey = _blackboard.TryGetOrAddKey("EnemySO");
+
+        if (_blackboard.TryGetValue(_enemySOKey, out EnemySO so)) _animator.runtimeAnimatorController = so.AnimatorController;
+        else Debug.LogError($"EnemySO controller for {gameObject} was not found");
     }
 
 

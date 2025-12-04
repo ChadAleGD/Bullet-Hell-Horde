@@ -7,8 +7,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-   private Camera _camera;
-
    [SerializeField] private Transform _shopPosition;
    [SerializeField] private Transform _combatPosition;
 
@@ -16,10 +14,6 @@ public class CameraController : MonoBehaviour
 
 
    //------------------------------------------------------------------------------------------------//
-
-
-
-   private void Awake() => _camera = GetComponent<Camera>();
 
 
 

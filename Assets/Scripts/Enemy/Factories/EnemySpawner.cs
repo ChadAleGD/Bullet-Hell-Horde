@@ -1,8 +1,7 @@
-using Gameplay.Player;
 using UnityEngine;
 
 
-public class EnemyFactory : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
 
 
@@ -16,10 +15,10 @@ public class EnemyFactory : MonoBehaviour
 
 
 
-    public void GenerateEnemy(EnemySO enemySO, Transform parentTransform)
+    public void SpawnEnemy(EnemySO enemySO, Transform parentTransform)
     {
         var newEnemy = Instantiate(_enemyBasePrefab, parentTransform);
-        newEnemy.GetComponent<Enemy>().Bootstrap(enemySO, _playerTransform);
+        newEnemy.GetComponent<Enemy>().Initialize(enemySO, _playerTransform);
     }
 
 

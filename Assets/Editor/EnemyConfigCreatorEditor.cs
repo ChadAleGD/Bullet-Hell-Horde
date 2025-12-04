@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEditor;
 
 
-[CustomEditor(typeof(EnemyConfigCreator))]
+[CustomEditor(typeof(EnemySOCreator))]
 public class EnemyConfigCreatorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        EnemyConfigCreator creator = (EnemyConfigCreator)target;
+        EnemySOCreator creator = (EnemySOCreator)target;
 
         GUILayout.Space(20f);
 
@@ -35,7 +35,7 @@ public class EnemyConfigCreatorEditor : Editor
             .WithBaseDamage(creator.BaseDamage)
             .WithSpeed(creator.Speed)
             .WithAnimatorController(creator.AnimationController)
-            .WithBehavior(creator.BehaviorFactory)
+            .WithModules(creator.ModuleFactories)
             .Build();
 
             AssetDatabase.CreateAsset(newEnemy, path);
@@ -48,7 +48,7 @@ public class EnemyConfigCreatorEditor : Editor
             creator.BaseDamage = 0;
             creator.Speed = 0;
             creator.AnimationController = null;
-            creator.BehaviorFactory = null;
+            creator.ModuleFactories = new();
 
             EditorUtility.SetDirty(creator);
 

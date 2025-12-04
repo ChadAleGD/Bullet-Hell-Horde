@@ -1,6 +1,6 @@
 ﻿<Solution>
-  <Project Path="LeanTween.csproj" />
   <Project Path="Scripts.csproj" />
+  <Project Path="LeanTween.csproj" />
   <Project Path="EditMode.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="PlayMode.csproj" />

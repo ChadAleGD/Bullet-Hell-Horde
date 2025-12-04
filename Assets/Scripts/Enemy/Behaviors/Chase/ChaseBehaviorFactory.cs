@@ -1,8 +1,8 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "ChaseBehavior", menuName = "Enemy Behavior/ChaseBehavior")]
-public class ChaseBehaviorFactory : EnemyBehaviorFactory
+[CreateAssetMenu(fileName = "ChaseBehaviorModule", menuName = "Modules/Enemy Behavior/Chase")]
+public class ChaseBehaviorFactory : ModuleFactory
 {
-    public override IEnemyBehavior AttachBehavior(Enemy host) => host.gameObject.AddComponent<ChaseBehavior>();
+    public override IModule AttachModule(GameObject host) => host.AddComponent<ChaseBehavior>();
 }

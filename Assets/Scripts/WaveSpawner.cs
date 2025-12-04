@@ -17,8 +17,6 @@ public struct RoundData
 
 
 
-
-
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private List<RoundData> _roundsData = new();
@@ -42,7 +40,7 @@ public class WaveSpawner : MonoBehaviour
 
 
 
-    [SerializeField] private EnemyFactory _enemyFactory;
+    //[SerializeField] private EnemyFactory _enemyFactory;
 
 
 
@@ -77,7 +75,7 @@ public class WaveSpawner : MonoBehaviour
 
 
 
-
+    // Main entry point to begin spawning 
     private void StartRound()
     {
         _enemiesSpawned = 0;
@@ -144,7 +142,7 @@ public class WaveSpawner : MonoBehaviour
             _enemiesSpawned++;
 
             var randomSpawnIndex = UnityEngine.Random.Range(0, _spawnPositions.Count);
-            _enemyFactory.GenerateEnemy(_currentRoundData.EnemyType, _spawnPositions[randomSpawnIndex]);
+            //_enemyFactory.GenerateEnemy(_currentRoundData.EnemyType, _spawnPositions[randomSpawnIndex]);
 
             yield return _spawnBurstTick;
         }

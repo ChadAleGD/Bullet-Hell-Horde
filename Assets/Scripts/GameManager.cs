@@ -1,20 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 
 
-public class GameManager : MonoBehaviour
+public static class GameManager
 {
 
+    public static Blackboard GlobalBlackboard;
 
-    private enum GameState
-    {
-        InCombat,
-        CombatBreak,
-        PauseMenu,
-    }
+    public static BlackboardKey PlayerTransformKey;
 
 
 
@@ -25,10 +18,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    //TODO: Change this later to be ran through states
-    private void Start()
-    {
-        EventBus.Publish(EventType.OnRoundStart);
-    }
+
 
 }

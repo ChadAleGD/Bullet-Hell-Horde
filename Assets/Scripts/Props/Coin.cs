@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(AudioSource))]
-public class Coin : MonoBehaviour
+public class Coin : MonoBehaviour, IPickupable
 {
 
     private AudioSource _audioSource;
@@ -20,8 +20,11 @@ public class Coin : MonoBehaviour
 
 
 
+    private void OnTriggerEnter2D(Collider2D collision) => StartCoroutine(PickUp());
 
-    private IEnumerator OnTriggerEnter2D(Collider2D collision)
+
+
+    public IEnumerator PickUp()
     {
         _boxCollider.enabled = false;
         _spriteRenderer.enabled = false;
@@ -32,5 +35,6 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(_audioSource.clip.length);
         Destroy(gameObject);
     }
+
 
 }

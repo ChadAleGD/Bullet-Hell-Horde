@@ -5,10 +5,14 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyMovementModule : MonoBehaviour, IEnemyModule
+public class EnemyMovementModule : MonoBehaviour, IModule
 {
 
+    private Blackboard _blackboard;
+
     private Rigidbody2D _rb;
+
+
 
     private bool _inKnockback;
     private readonly float _knockbackTime = .2f;
@@ -19,10 +23,11 @@ public class EnemyMovementModule : MonoBehaviour, IEnemyModule
 
 
 
-    public IEnemyModule Initialize(EnemySO enemyData)
+    public void Initialize(Blackboard blackboard)
     {
         _rb = GetComponent<Rigidbody2D>();
-        return this;
+
+        _blackboard = blackboard;
     }
 
 
